@@ -5,10 +5,9 @@ from django.utils.translation import gettext_lazy as _
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-zb7f#qv)08s-!02uel&kjb=n0%6981s_h!y4zza+9g(ai3_$&z'
-
 DEBUG = True
+ALLOWED_HOSTS = ['*']
 
-ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "jazzmin",
@@ -27,7 +26,8 @@ INSTALLED_APPS = [
     "rest_framework",
     'ckeditor',
     'ckeditor_uploader',
-
+    'rest_framework',
+    'apps.main',
     'apps.page_generator',
 ]
 
