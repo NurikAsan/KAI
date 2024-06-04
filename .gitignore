@@ -138,4 +138,6 @@ GitHub.sublime-settings
 .history
 
 */migrations/*
-!*/migrations/*
+!*/migrations/__init__.py
+
+.idea/*
