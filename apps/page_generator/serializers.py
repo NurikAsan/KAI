@@ -11,7 +11,7 @@ class NavLinksSerializer(ModelSerializer):
 
     class Meta:
         model = NavLinks
-        fields = ['id', 'title', 'url', 'image']
+        fields = ['id', 'title', 'url', 'images']
 
 
 class NewsSerializer(ModelSerializer):
@@ -22,7 +22,7 @@ class NewsSerializer(ModelSerializer):
 
     class Meta:
         model = TextContent
-        fields = ['id', 'title', 'description', 'iamge']
+        fields = ['id', 'title', 'description', 'images']
 
 
 
@@ -34,7 +34,7 @@ class TextContentSerializer(ModelSerializer):
 
     class Meta:
         model = TextContent
-        fields = ['id', 'title', 'description', 'iamge']
+        fields = ['id', 'title', 'description', 'images']
 
 
 class VeteranSerializer(ModelSerializer):
@@ -45,7 +45,7 @@ class VeteranSerializer(ModelSerializer):
 
     class Meta:
         model = Veteran
-        fields = ['id', 'title', 'full_name', 'rank', 'description', 'image']
+        fields = ['id', 'title', 'full_name', 'rank', 'description', 'images']
 
 
 class PartnersSerializer(ModelSerializer):
@@ -56,7 +56,7 @@ class PartnersSerializer(ModelSerializer):
 
     class Meta:
         model = Partners
-        fields = ['id', 'name', 'text', 'image']
+        fields = ['id', 'name', 'text', 'images']
 
 
 class NavImageSerializer(ModelSerializer):
