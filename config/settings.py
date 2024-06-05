@@ -20,13 +20,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     "django.contrib.flatpages",
-
     "debug_toolbar",
     'drf_spectacular',
     "rest_framework",
     'ckeditor',
     'ckeditor_uploader',
-    'rest_framework',
     'apps.main',
     'apps.page_generator',
 ]
