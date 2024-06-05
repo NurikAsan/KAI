@@ -18,8 +18,14 @@ class NavLinks(models.Model):
         PageGenerator,
         on_delete=models.CASCADE,
         related_name="nav_links",
-        verbose_name='Страница'
+        verbose_name='Страница',
+        null=True,
+        blank=True
     )
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'Навигационные ссылки'
+        verbose_name_plural = 'Навигационные ссылки'

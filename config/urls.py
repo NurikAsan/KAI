@@ -9,7 +9,7 @@ urlpatterns = [
     path('docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='docs'),
     path("redoc/", SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('admin/', admin.site.urls),
-    path('api/v1/page-generator/', include('apps.page_generator.urls'))
+    path('api/v1/', include('apps.page_generator.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -6,4 +6,8 @@ class NavLinksSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = NavLinks
-        fields = ['title', 'url', 'image']
+        fields = (
+            'title',
+            'url',
+            'image'
+        )
