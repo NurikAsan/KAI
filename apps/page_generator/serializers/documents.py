@@ -7,5 +7,6 @@ class DocumentsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Documents
         fields = (
+            'name',
             'pdf',
         )

@@ -4,7 +4,7 @@ from .common_models import PageGenerator
 
 class Person(models.Model):
     full_name = models.CharField(
-        max_length=200,
+        max_length=150,
         null=True,
         blank=True,
         verbose_name="Полное имя человека"
@@ -38,6 +38,14 @@ class Person(models.Model):
         related_name='peoples',
         verbose_name="Страница"
     )
+
+    def __str__(self):
+        return self.full_name
+
+    class Meta:
+        verbose_name = "Сотрудник"
+        verbose_name_plural = "Сотрудники"
+        # indexes = ['full_name']
 
 
 class PhoneNumber(models.Model):

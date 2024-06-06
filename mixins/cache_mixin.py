@@ -6,9 +6,10 @@ import re
 from django.core.cache import cache
 from django.conf import settings
 
-from apps.page_generator.models import *
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+
+from apps.page_generator.models.nav_links import NavLinks
 
 logger = logging.getLogger('product')
 
@@ -41,64 +42,64 @@ def delete_caches_service(sender, instance, created, **kwargs):
         delete_cache(instance.CACHE_KEY_PREFIX)
 
 
-@receiver(post_save, sender=NAVImages)
-def delete_caches(sender, instance, created, **kwargs):
-    print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
-    if created:
-        delete_cache(instance.CACHE_KEY_PREFIX)
-
-
-@receiver(post_save, sender=TextContent)
-def delete_caches(sender, instance, created, **kwargs):
-    print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
-    if created:
-        delete_cache(instance.CACHE_KEY_PREFIX)
-
-
-@receiver(post_save, sender=Images)
-def delete_caches(sender, instance, created, **kwargs):
-    print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
-    if created:
-        delete_cache(instance.CACHE_KEY_PREFIX)
-
-
-@receiver(post_save, sender=Veteran)
-def delete_caches(sender, instance, created, **kwargs):
-    print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
-    if created:
-        delete_cache(instance.CACHE_KEY_PREFIX)
-
-
-@receiver(post_save, sender=VeteransImages)
-def delete_caches(sender, instance, created, **kwargs):
-    print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
-    if created:
-        delete_cache(instance.CACHE_KEY_PREFIX)
-
-
-@receiver(post_save, sender=Partners)
-def delete_caches(sender, instance, created, **kwargs):
-    print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
-    if created:
-        delete_cache(instance.CACHE_KEY_PREFIX)
-
-
-@receiver(post_save, sender=PartnersImages)
-def delete_caches(sender, instance, created, **kwargs):
-    print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
-    if created:
-        delete_cache(instance.CACHE_KEY_PREFIX)
-
-
-@receiver(post_save, sender=News)
-def delete_caches(sender, instance, created, **kwargs):
-    print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
-    if created:
-        delete_cache(instance.CACHE_KEY_PREFIX)
-
-
-@receiver(post_save, sender=NewsImages)
-def delete_caches(sender, instance, created, **kwargs):
-    print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
-    if created:
-        delete_cache(instance.CACHE_KEY_PREFIX)
+# @receiver(post_save, sender=NAVImages)
+# def delete_caches(sender, instance, created, **kwargs):
+#     print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
+#     if created:
+#         delete_cache(instance.CACHE_KEY_PREFIX)
+#
+#
+# @receiver(post_save, sender=TextContent)
+# def delete_caches(sender, instance, created, **kwargs):
+#     print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
+#     if created:
+#         delete_cache(instance.CACHE_KEY_PREFIX)
+#
+#
+# @receiver(post_save, sender=Images)
+# def delete_caches(sender, instance, created, **kwargs):
+#     print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
+#     if created:
+#         delete_cache(instance.CACHE_KEY_PREFIX)
+#
+#
+# @receiver(post_save, sender=Veteran)
+# def delete_caches(sender, instance, created, **kwargs):
+#     print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
+#     if created:
+#         delete_cache(instance.CACHE_KEY_PREFIX)
+#
+#
+# @receiver(post_save, sender=VeteransImages)
+# def delete_caches(sender, instance, created, **kwargs):
+#     print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
+#     if created:
+#         delete_cache(instance.CACHE_KEY_PREFIX)
+#
+#
+# @receiver(post_save, sender=Partners)
+# def delete_caches(sender, instance, created, **kwargs):
+#     print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
+#     if created:
+#         delete_cache(instance.CACHE_KEY_PREFIX)
+#
+#
+# @receiver(post_save, sender=PartnersImages)
+# def delete_caches(sender, instance, created, **kwargs):
+#     print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
+#     if created:
+#         delete_cache(instance.CACHE_KEY_PREFIX)
+#
+#
+# @receiver(post_save, sender=News)
+# def delete_caches(sender, instance, created, **kwargs):
+#     print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
+#     if created:
+#         delete_cache(instance.CACHE_KEY_PREFIX)
+#
+#
+# @receiver(post_save, sender=NewsImages)
+# def delete_caches(sender, instance, created, **kwargs):
+#     print(f"Delete cash in {instance.CACHE_KEY_PREFIX}")
+#     if created:
+#         delete_cache(instance.CACHE_KEY_PREFIX)

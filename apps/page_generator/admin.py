@@ -1,12 +1,17 @@
 from django.contrib import admin
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django.core.paginator import Page
 
+from .models.person import Person, PhoneNumber
 from .models.documents import Documents
 from .models.image_content import ImageContent
 from .models.nav_links import *
 from mixins.translations_mixins import TranslatorMediaMixin
 from .models.text_content import TextContent, TextContentImages
+from .models.veteran import VeteranPosition, Veteran
+from .models.table import *
+from .models.common_models import *
 
 
 TEXT = "Здесь вам нужно будет ввести данные товара на 3 разных языках"
@@ -49,71 +54,55 @@ class TextContentAdminModel(TranslatorMediaMixin):
 
 @admin.register(ImageContent)
 class ImageContent(admin.ModelAdmin):
-    model = ImageContent
     search_fields = ('id', )
     raw_id_fields = ('page',)
 
 
 @admin.register(Documents)
-class DocumentsAdmin(admin.ModelAdmin):
-    model = Documents
+class DocumentsAdmin(TranslatorMediaMixin):
     search_fields = ('id', )
     raw_id_fields = ('page', )
 
-# class VeteranImageInline(admin.TabularInline):
-#     model = VeteransImages
-#     max_num = 20
-#     extra = 0
-#
-#
-# @admin.register(Veteran)
-# class VeteranAdminModel(TranslatorMediaMixin):
-#     inlines = [VeteranImageInline, ]
-#     list_display = ['id', "title", 'description', 'full_name', 'rank',]
-#     list_display_links = ("id",)
-#     list_filter = ['id', "title"]
-#     search_fields = ['id', "title"]
-#
-#
-# class PartnersInline(admin.TabularInline):
-#     model = PartnersImages
-#     max_num = 20
-#     extra = 0
-#
-#
-# @admin.register(Partners)
-# class PartnersAdminModel(TranslatorMediaMixin):
-#     inlines = [PartnersInline, ]
-#     list_display = ['id', "name", 'text']
-#     list_display_links = ("id",)
-#     list_filter = ['id', "name"]
-#     search_fields = ['id', "name"]
-#
-#
-# class NewsInline(admin.TabularInline):
-#     model = NewsImages
-#     max_num = 20
-#     extra = 0
-#
-#
-# @admin.register(News)
-# class NewsAdminModel(TranslatorMediaMixin):
-#     inlines = [NewsInline, ]
-#     list_display = ['id', "title", 'text']
-#     list_display_links = ("id",)
-#     list_filter = ['id', "title"]
-#     search_fields = ['id', "title"]
 
-from .models.person import *
-from .models.table import *
-from .models.common_models import *
+class PhoneNumberInline(admin.TabularInline):
+    model = PhoneNumber
+    extra = 2
 
-admin.site.register(Person)
-admin.site.register(PhoneNumber)
+
+@admin.register(Person)
+class PersonAdmin(TranslatorMediaMixin):
+    search_fields = ('full_name', 'position', 'email')
+    raw_id_fields = ('page', )
+    inlines = (PhoneNumberInline, )
+
+
+class VeteranPositionInline(admin.TabularInline):
+    model = VeteranPosition
+    extra = 2
+
+
+@admin.register(Veteran)
+class VeteranAdminModel(TranslatorMediaMixin):
+    inlines = (VeteranPositionInline, )
+    list_display = ('id', 'full_name',)
+    list_display_links = ("id",)
+    list_filter = ('id',)
+    search_fields = ('id', "full_name", )
+
+
+@admin.register(PageGenerator)
+class PageGeneratorAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Table)
 admin.site.register(TableCodeColumn)
 admin.site.register(TableDirectionColumn)
-admin.site.register(PageGenerator)
-admin.site.register(Category)
+
+
+@admin.register(Category)
+class CategoryAdmin(TranslatorMediaMixin):
+    pass
+
+
 admin.site.register(SubCategory)
 admin.site.register(SubSubCategory)

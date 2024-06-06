@@ -2,7 +2,7 @@ from pathlib import Path
 import os 
 from django.utils.translation import gettext_lazy as _
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = 'django-insecure-zb7f#qv)08s-!02uel&kjb=n0%6981s_h!y4zza+9g(ai3_$&z'
 DEBUG = True
@@ -115,9 +115,6 @@ MEDIA_URL = '/back-media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "back-media")
 
 
-STATIC_URL = 'static/'
-
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
@@ -170,28 +167,7 @@ SPECTACULAR_SETTINGS = {
 #     }
 # }
 
-JAZZMIN_SETTINGS = {
-    "site_header": "KAI",
-    "site_brand": "KAI",
-    "welcome_sign": "Welcome to the library",
-    "search_model": ["auth.User"],
-
-    "topmenu_links": [
-
-        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
-
-        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
-
-        {"model": "auth.User"},
-        
-    ],
-
-    "usermenu_links": [
-        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
-        {"model": "auth.user"}
-    ],
-
-}
+from .jazzmin import *
 
 LOGGING = {
     'version': 1,

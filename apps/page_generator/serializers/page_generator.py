@@ -55,6 +55,8 @@ class PageGeneratorSerializer(serializers.ModelSerializer):
     class Meta:
         model = PageGenerator
         fields = (
+            'title',
+            'image',
             'nav_links',
             'text_contents',
             'images_content',

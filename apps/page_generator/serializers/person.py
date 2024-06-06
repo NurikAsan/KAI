@@ -10,6 +10,7 @@ class PhoneNumberSerializer(serializers.ModelSerializer):
             'phone_number',
         )
 
+
 class PersonSerializer(serializers.ModelSerializer):
     phone_numbers = PhoneNumberSerializer(read_only=True, many=True)
 

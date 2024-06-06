@@ -24,6 +24,7 @@ class TableCodeColumnSerializer(serializers.ModelSerializer):
             'year',
         )
 
+
 class TableSerializer(serializers.ModelSerializer):
     table_codes_column = TableCodeColumnSerializer(read_only=True, many=True)
 
