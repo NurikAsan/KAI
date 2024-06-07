@@ -1,13 +1,16 @@
+from mixins.translations_mixins import TranslatorMediaMixin
+
+`
 from django.contrib import admin
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.core.paginator import Page
+from modeltranslation.admin import TranslationAdmin
 
 from .models.person import Person, PhoneNumber
 from .models.documents import Documents
 from .models.image_content import ImageContent
 from .models.nav_links import *
-from mixins.translations_mixins import TranslatorMediaMixin
 from .models.text_content import TextContent, TextContentImages
 from .models.veteran import VeteranPosition, Veteran
 from .models.table import *
@@ -17,7 +20,7 @@ from .models.common_models import *
 TEXT = "Здесь вам нужно будет ввести данные товара на 3 разных языках"
 
 
-class PostAdminForm(forms.ModelForm):
+class TextContentAdminForm(forms.ModelForm):
     description_ru = forms.CharField(label="Описание", widget=CKEditorUploadingWidget())
     description_en = forms.CharField(label="Описание", widget=CKEditorUploadingWidget())
     description_ky = forms.CharField(label="Описание", widget=CKEditorUploadingWidget())
@@ -91,18 +94,48 @@ class VeteranAdminModel(TranslatorMediaMixin):
 
 
 @admin.register(PageGenerator)
-class PageGeneratorAdmin(admin.ModelAdmin):
+class PageGeneratorAdmin(TranslatorMediaMixin):
     pass
 
-admin.site.register(Table)
-admin.site.register(TableCodeColumn)
-admin.site.register(TableDirectionColumn)
+
+@admin.register(Table)
+class TableAdmin(TranslatorMediaMixin):
+    pass
+
+
+@admin.register(TableDirectionColumn)
+class TableDirectionAdminModel(TranslatorMediaMixin):
+    list_display = ('id', 'direction', 'status1', 'status2', 'links')
+    list_display_links = ("id",)
+    list_filter = ('id',)
+    search_fields = ('id', "direction", )
 
 
 @admin.register(Category)
 class CategoryAdmin(TranslatorMediaMixin):
     pass
 
+@admin.register(SubCategory)
+class SubCategoryAdmin(TranslatorMediaMixin):
+    pass
 
-admin.site.register(SubCategory)
-admin.site.register(SubSubCategory)
+@admin.register(SubSubCategory)
+class SubSubCategoryAdmin(TranslationAdmin):
+    class Media:
+        js = (
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js",
+            "https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js",
+            "modeltranslation/js/tabbed_translation_fields.js",
+            "adminsortable2/js/plugins/admincompat.js",
+            "adminsortable2/js/libs/jquery.ui.core-1.11.4.js",
+            "adminsortable2/js/libs/jquery.ui.widget-1.11.4.js",
+            "adminsortable2/js/libs/jquery.ui.mouse-1.11.4.js",
+            "adminsortable2/js/libs/jquery.ui.touch-punch-0.2.3.js",
+            "adminsortable2/js/libs/jquery.ui.sortable-1.11.4.js",
+        )
+        css = {
+            "screen": ("modeltranslation/css/tabbed_translation_fields.css",),
+        }
+
+
+admin.site.register(TableCodeColumn)
