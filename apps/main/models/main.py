@@ -2,7 +2,16 @@ from django.db import models
 
 
 class MainPage(models.Model):
-    pass
+    description = models.TextField(
+        max_length=150,
+        blank=True,
+        null=True,
+        verbose_name="Описание"
+    )
+
+    class Meta:
+        verbose_name = "Главная страница"
+        verbose_name_plural = "Главная страница"
 
 
 class BannerWithText(models.Model):
@@ -24,4 +33,3 @@ class BannerWithText(models.Model):
         blank=True,
         verbose_name='Ссылка на главную страницу'
     )
-

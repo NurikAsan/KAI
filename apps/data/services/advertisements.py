@@ -1,4 +1,4 @@
-from apps.main.models.advertisements import Advertisements
+from ..models.advertisements import Advertisements
 
 
 class AdvertisementsService:

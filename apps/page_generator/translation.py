@@ -7,7 +7,6 @@ from .models.person import Person
 from .models.table import Table, TableDirectionColumn
 from .models.text_content import TextContent
 from .models.veteran import Veteran, VeteranPosition
-from ..main.models.news import News
 
 
 @register(NavLinks)
@@ -68,8 +67,3 @@ class SubCategoryTranslatableOptions(TranslationOptions):
 @register(SubSubCategory)
 class SubSubCategoryTranslatableOptions(TranslationOptions):
     fields = ('name', )
-
-
-@register(News)
-class NewsTranslatableOptions(TranslationOptions):
-    fields = ('title', 'text')

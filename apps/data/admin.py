@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models.partners import Partners
-from .models.main import BannerWithText
+from .models.news import News, NewsImages
+from .models.advertisements import Advertisements, AdvertisementsImages
+
 from modeltranslation.admin import TranslationAdmin
 
 class TranslatorMediaMixin(TranslationAdmin):
@@ -20,14 +21,32 @@ class TranslatorMediaMixin(TranslationAdmin):
             "screen": ("modeltranslation/css/tabbed_translation_fields.css",),
         }
 
-@admin.register(Partners)
-class PartnersAdminModel(TranslatorMediaMixin):
-    list_display = ('id', "name", 'link')
+
+class NewsInline(admin.TabularInline):
+    model = NewsImages
+    max_num = 20
+    extra = 2
+
+
+@admin.register(News)
+class NewsAdminModel(TranslatorMediaMixin):
+    inlines = (NewsInline, )
+    list_display = ('id', "title", 'text')
     list_display_links = ("id",)
-    list_filter = ('id', "name")
-    search_fields = ('id', "name")
+    list_filter = ('id', "title")
+    search_fields = ('id', "title")
 
 
-@admin.register(BannerWithText)
-class BannerWithTextAdminModel(TranslatorMediaMixin):
-    list_display = ('id', 'title')
+class AdvertisementsImagesInline(admin.TabularInline):
+    model = AdvertisementsImages
+    max_num = 20
+    extra = 2
+
+
+@admin.register(Advertisements)
+class AdvertisementsAdmin(TranslatorMediaMixin):
+    inlines = (AdvertisementsImagesInline, )
+    list_display = ('id', "title", 'text')
+    list_display_links = ("id",)
+    list_filter = ('id', "title")
+    search_fields = ('id', "title")

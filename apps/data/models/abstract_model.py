@@ -12,6 +12,7 @@ class AbstractModel(models.Model):
     date = models.DateField(verbose_name='Дата')
 
     class Meta:
+        ordering = ('-date',)
         abstract = True
 
     def __str__(self):

@@ -8,5 +8,6 @@ class PartnerSerializer(serializers.ModelSerializer):
         model = Partners
         fields = (
             'name',
-            'image'
+            'image',
+            'link'
         )

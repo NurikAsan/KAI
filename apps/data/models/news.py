@@ -9,11 +9,7 @@ class News(AbstractModel):
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
 
-    CACHE_KEY_PREFIX = "news"
-
 
 class NewsImages(models.Model):
     news = models.ForeignKey(News, related_name='images', on_delete=models.CASCADE, verbose_name='Ссылка на новости')
     image = WEBPField(upload_to=image_folder, verbose_name='Изображение')
-
-    CACHE_KEY_PREFIX = "news_images"

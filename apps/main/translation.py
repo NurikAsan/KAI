@@ -8,10 +8,6 @@ class PartnersTranslateOptions(TranslationOptions):
     fields = ('name', )
 
 
-# @register(News)
-# class NewsTranslateOptions(TranslationOptions):
-#     fields = ('title', 'text')
-
 @register(BannerWithText)
 class BannerWithTextTranslation(TranslationOptions):
     fields = ('title',)

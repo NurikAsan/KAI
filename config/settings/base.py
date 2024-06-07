@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'apps.main',
     'apps.page_generator',
+    'apps.data',
 ]
 
 MIDDLEWARE = [
