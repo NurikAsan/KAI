@@ -106,3 +106,4 @@ class CategoryAdmin(TranslatorMediaMixin):
 
 admin.site.register(SubCategory)
 admin.site.register(SubSubCategory)
+

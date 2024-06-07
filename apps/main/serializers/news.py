@@ -29,7 +29,7 @@ class NewsListSerializer(serializers.ModelSerializer):
         model = News
         fields = (
             'id',
-            'data',
+            'date',
             'text',
             'image'
         )
